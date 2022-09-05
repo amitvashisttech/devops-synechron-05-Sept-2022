@@ -185,3 +185,48 @@
   187  ls
   188  history
 ```
+
+```
+211  git clone https://github.com/amitvashisttech/devops-synechron-05-Sept-2022.git
+  212  ls
+  213  cd devops-synechron-05-Sept-2022/
+  214  ls
+  215  cp -rf ../mysample-project 01-GitDemo
+  216  ls
+  217  cd 01-GitDemo/
+  218  ls
+  219  rm -rf .git/
+  220  s
+  221  ls
+  222  cd ..
+  223  ls
+  224  git status
+  225  git add .
+  226  git status
+  227  git commit -m "01-GitDemo"
+  228  git branch
+  229  git push
+  230  git config --global credential.helper 'cache --timeout=360000'
+  231  git push
+  232  git log --oneline
+  233  git pull
+  234  git log --oneline
+  235  ls
+  236  cd
+  237  ls
+  238  cd devops-synechron-05-Sept-2022/
+  239  ls
+  240  git status
+  241  git fetch
+  242  ls
+  243  git branch prod
+  244  ls
+  245  git checkout prod
+  246  echo "Hello GitHub Prod" > 01-GitDemo/Prod.txt
+  247  ls
+  248  git add . ; git commit -m "Branch Test"
+  249  git branch
+  250  git push
+  251  git push --set-upstream origin prod
+  252  git config --list
+```
