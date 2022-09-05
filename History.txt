@@ -47,3 +47,141 @@
    48  git add . ; git commit -m "Test - 2"
    49  git logs
 ```
+
+```
+54  git clone https://github.com/amitvashisttech/devops-synechron-05-Sept-2022.git
+   55  ls
+   56  cd devops-synechron-05-Sept-2022/
+   57  ls
+   58  cat History.txt
+   59  ls
+   60  cd ..
+   61  ls
+   62  cd mysample-project/
+   63  ls
+   64  git logs
+   65  git log
+   66  git diff 3751bb..b8c7c7
+   67  git diff b8c7c7..3751bb
+   68  git diff e5e6c5..3751bb
+   69  ls
+   70  git showlog
+   71  git log --oneline
+   72  git shortlog
+   73  git shortlog -s
+   74  git shortlog -sn
+   75  git shortlog -sne
+   76  git branch
+   77  git head
+   78  git show HEAD
+   79  ls
+   80  cat .git/HEAD
+   81  cat .git/refs/heads/master
+   82  ls
+   83  echo  "Testing HEAD" >> hello.txt
+   84  git add . ; git commit -m "Testing HEAD"
+   85  git log
+   86  git shortlog -sne
+   87  git shortlog -s
+   88  git shortlog
+   89  cat .git/HEAD
+   90  cat .git/refs/heads/master
+   91  git branch
+   92  git branch uat
+   93  git branch
+   94  git checkout uat
+   95  git branch
+   96  cat .git/HEAD
+   97  cat .git/refs/heads/uat
+   98  ls
+   99  git branch
+  100  echo  "Welcome to UAT Branch" > UAT.txt
+  101  ls
+  102  git add .
+  103  git commit -m "New File Added UAT.txt"
+  104  git log
+  105  cat .git/refs/heads/uat
+  106  ls
+  107  cat UAT.txt
+  108  ls
+  109  git branch
+  110  git checkout master
+  111  ls
+  112  cat .git/refs/heads/master
+  113  echo  "Welcome to Master Branch" > Master.txt
+  114  git commit -m "New File Added Master.txt"
+  115  git add .; git commit -m "New File Added Master.txt"
+  116  ls
+  117  cat .git/refs/heads/master
+  118  ls
+  119  git branch Prod
+  120  git branch
+  121  git checkout Prod
+  122  ls
+  123  echo  "Welcome to PROD Branch" > Prod.txt
+  124  echo  "Test 3" >> hello.txt
+  125  git add .; git commit -m "New File Added Prod.txt"
+  126  git log
+  127  git log --oneline
+  128  git log --oneline --graph
+  129  git checkout
+  130  ls
+  131  git checkout master
+  132  ls
+  133  git log --oneline --graph
+  134  git branch
+  135  git merge uat
+  136  ls
+  137  git log --oneline --graph
+  138  ls
+  139  cat UAT.txt
+  140  git merge Prod
+  141  cat hello.txt
+  142  cat Prod.txt
+  143  ls
+  144  git log --oneline --graph
+  145  git branch
+  146  git branch --help
+  147  git branch -D uat
+  148  git branch -D Prod
+  149  git branch
+  150  git log --oneline --graph
+  151  git logs
+  152  git log --oneline --graph
+  153  echo  "Test 4" >> hello.txt
+  154  git add .; git commit -m "Test 4"
+  155  git log --oneline --graph
+  156  echo  "Test 5" >> hello.txt
+  157  git add .; git commit -m "Test 5"
+  158  git log --oneline --graph
+  159  git branch
+  160  git branch test-1
+  161  ls
+  162  echo  "Test 6" >> hello.txt
+  163  git add .; git commit -m "Test 6"
+  164  git branch
+  165  git checkout test-1
+  166  ls
+  167  echo  "Test 7" >> hello.txt
+  168* git merge
+  169  git add .; git commit -m "Test 7"
+  170  git checkout master
+  171  git log --oneline --graph
+  172  git merge test-1
+  173  cat hello.txt
+  174  vim hello.txt
+  175  git status
+  176  git add .; git commit -m "Conflict Fixed"
+  177  git status
+  178  git log --oneline --graph
+  179  git checkout test-1
+  180  ls
+  181  cat hello.txt
+  182  git merge master
+  183  ls
+  184  cat hello.txt
+  185  ls
+  186  git checkout master
+  187  ls
+  188  history
+```
