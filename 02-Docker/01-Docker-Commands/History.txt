@@ -118,3 +118,60 @@
    83  docker rmi c98db043bed9
    84  docker images 
 ```
+
+# Docker Image 
+
+```
+106  cd 02-Docker/
+  107  ls
+  108  mkdir 02-DockerImages/apache -p
+  109  cd 02-DockerImages/apache/
+  110  ls
+  111  vim Dockerfile
+  112  ls
+  113  docker run -it --name test-ap ubuntu:16.]04
+  114  docker run -it --name test-ap ubuntu:16.04
+  115  ls
+  116  cat Dockerfile
+  117  ls
+  118  mv Dockerfile amit
+  119  docker build -t myapache:v1 -f amit .
+  120  ls
+  121  mv amit Dockerfile
+  122  docker build -t myapache:v1 .
+  123  ls
+  124  docker images
+  125  cd
+  126  docker run -d --name my-apache-1 myapache:v1
+  127  docker ps
+  128  docker ps -a
+  129  docker logs cd555f68f828
+  130  docker logs -f  cd555f68f828
+  131  cd -
+  132  ls
+  133  vim Dockerfile
+  134  ls
+  135  docker build -t myapache:v1 .
+  136  docker run -d --name my-apache-2 myapache:v1
+  137  docker ps
+  138  docker inspect --format '{{.Name}} {{.State.Running}} {{.NetworkSettings.IPAddress}}' $(docker ps -qa)
+  139  curl 172.17.0.2
+  140  ls
+  141  mkdir v1
+  142  ls
+  143  mv Dockerfile v1/
+  144  ls
+  145  cp -rf v1 v2
+  146  ls
+  147  cd v2/
+  148  ls
+  149  vim index.html
+  150  ls
+  151  vim Dockerfile
+  152  ls
+  153  docker build -t myapache:v2 .
+  154  docker run -d --name my-apache-3 myapache:v2
+  155  docker inspect --format '{{.Name}} {{.State.Running}} {{.NetworkSettings.IPAddress}}' $(docker ps -qa)
+  156  curl 172.17.0.2
+  157  curl 172.17.0.3
+```
