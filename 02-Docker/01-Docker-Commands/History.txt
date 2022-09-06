@@ -31,3 +31,90 @@
   101  docker pull amitvashist7/k8s-tiny-web:2
   102  docker images
 ```
+
+```
+    1  ls
+    2  cd devops-synechron-05-Sept-2022/
+    3  ls
+    4  cd 02-Docker/
+    5  ls
+    6  docker ps 
+    7  docker ps -a 
+    8  ls
+    9  cd 
+   10  docker images 
+   11  docker run -it ubuntu 
+   12  docker ps 
+   13  docker ps -a 
+   14  docker run -it --name test-1 ubuntu 
+   15  docker run -it --name test-2 ubuntu:16.04
+   16  docker ps 
+   17  docker ps -a 
+   18  docker start test-2
+   19  docker ps 
+   20  docker ps -a 
+   21  docker stop  test-2
+   22  docker ps -a 
+   23  docker start  test-2
+   24  docker ps -a 
+   25  docker ps 
+   26  docker run -it test-2 
+   27  docker run -it --name test-2 ubuntu:16.04
+   28  docker run -it --name test-3 ubuntu:16.04
+   29  docker ps 
+   30  docker attach test-2 
+   31  docker ps 
+   32  docker kill test-2
+   33  docker ps 
+   34  docker ps -a 
+   35  docker rm test-2
+   36  docker ps -a 
+   37  docker ps -a
+   38  docker run -itd --name test-2 ubuntu:16.04
+   39  docker ps -a
+   40  docker ps -aq
+   41  docker rm $(docker ps -qa) 
+   42  docker ps -a
+   43  docker run -it --name test-3 ubuntu:16.04
+   44  docker ps 
+   45  docker run -itd --name test-4 ubuntu:16.04
+   46  docker run -itd --name test-5 ubuntu:16.04
+   47  docker run -itd --name test-6 ubuntu
+   48  docker run -itd --name test-6 busybox
+   49  docker run -itd --name test-7 busybox
+   50  docker ps 
+   51  docker ps -q
+   52  docker kill $(docker ps -q) 
+   53  docker ps -q
+   54  docker ps -qa
+   55  docker start $(docker ps -qa) 
+   56  docker ps 
+   57  ls
+   58  docker ps 
+   59  docker inspect test-2
+   60  docker inspect --format '{{.Name}} {{.State.Running}} {{.NetworkSettings.IPAddress}}' test-2
+   61  docker inspect --format '{{.Name}} {{.State.Running}} {{.NetworkSettings.IPAddress}}' $(docker ps -qa}
+   62  docker inspect --format '{{.Name}} {{.State.Running}} {{.NetworkSettings.IPAddress}}' $(docker ps -qa)
+   63  docker stop test-5 
+   64  docker inspect --format '{{.Name}} {{.State.Running}} {{.NetworkSettings.IPAddress}}' $(docker ps -qa)
+   65  docker run -itd --name test-8 busybox
+   66  docker run -itd --name test-9 busybox
+   67  docker inspect --format '{{.Name}} {{.State.Running}} {{.NetworkSettings.IPAddress}}' $(docker ps -qa)
+   68  docker start test-5
+   69  docker inspect --format '{{.Name}} {{.State.Running}} {{.NetworkSettings.IPAddress}}' $(docker ps -qa)
+   70  docker ps 
+   71  docker ps -q
+   72  docker ps -l 
+   73  docker ps -lq 
+   74  docker images 
+   75  docker rmi busybox
+   76  docker rmi busybox --force 
+   77  docker images 
+   78  docker kill 3db1cc741728
+   79  docker rm 3db1cc741728
+   80  docker rmi c98db043bed9
+   81  docker kill $(docker ps -qa) 
+   82  docker rm $(docker ps -qa) 
+   83  docker rmi c98db043bed9
+   84  docker images 
+```
