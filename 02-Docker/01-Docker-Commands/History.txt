@@ -1,0 +1,14 @@
+```
+ 55  docker version
+   56  docker container ls
+   57  docker container ls -a
+   58  docker run busybox echo "Welcome to the world of Docker"
+   59  docker container ls
+   60  docker container ls -a
+   61  docker run busybox echo "Welcome to the world of Docker - Test 2"
+   62  docker run busybox echo "Welcome to the world of Docker - Test 3"
+   63  docker run busybox echo "Welcome to the world of Docker - Test 4"
+   64  docker container ls
+   65  docker container ls -a
+   66  docker images
+```
