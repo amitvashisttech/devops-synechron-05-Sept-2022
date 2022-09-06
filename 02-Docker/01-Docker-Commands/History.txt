@@ -12,3 +12,22 @@
    65  docker container ls -a
    66  docker images
 ```
+
+
+```
+ 88  docker ps -a
+   89  docker run ubuntu echo "Welcome to the world of Docker - Test 4"
+   90  docker ps -a
+   91  docker images
+   92  docker run ubuntu cat /etc/os-release
+   93  docker ps
+   94*
+   95  docker run ubuntu:16.04  cat /etc/os-release
+   96  docker images
+   97  docker run ubuntu:focal  cat /etc/os-release
+   98  docker images
+   99  docker pull amitvashist7/k8s-tiny-web
+  100  docker images
+  101  docker pull amitvashist7/k8s-tiny-web:2
+  102  docker images
+```
