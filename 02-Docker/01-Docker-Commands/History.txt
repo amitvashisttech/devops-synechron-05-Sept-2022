@@ -297,3 +297,52 @@
   300  docker push amitvashist7/devops-synechron-05-sept-2022-myapache:v2
 ```
 
+# Docker Volumes 
+```
+ 324  mkdir 03-DockerVolume
+  325  ls
+  326  docker run -it --name test-vol1 ubuntu:16.04
+  327  docker ps
+  328  docker ps -a
+  329  docker kill $(docker ps -qa)
+  330  docker rm $(docker ps -qa)
+  331  docker ps
+  332  docker ps -a
+  333  docker volume ls
+  334  docker volume create my-vol
+  335  docker volume ls
+  336  docker volume inspect my-vol
+  337  docker run -it --name test-vol2 -v my-vol:/myapp ubuntu:16.04
+  338  docker rm $(docker ps -qa)
+  339  docker ps -a
+  340  docker volume ls
+  341  docker volume inspect my-vol
+  342  cat /var/lib/docker/volumes/my-vol/_data/hello.txt
+  343  docker run -it --name test-vol3 -v my-vol:/myapp ubuntu:16.04
+  344  docker run -it --name test-vol4 -v my-vol:/amit ubuntu:16.04
+  345  docker run -it --name test-vol5 -v my-vol:/amit:ro ubuntu:16.04
+  346  hostname >> /var/lib/docker/volumes/my-vol/_data/hello.txt
+  347  date >> /var/lib/docker/volumes/my-vol/_data/hello.txt
+  348  cat /var/lib/docker/volumes/my-vol/_data/hello.txt
+  349  docker ps
+  350  docker attach test-vol5
+  351  ls
+  352  docker volumes ls
+  353  docker volume ls
+  354  pwd
+  355  cd ..
+  356  ls
+  357  pwd
+  358  docker run -it --name test-vol6 -v /root/devops-synechron-05-Sept-2022:/amit: ubuntu:16.04
+  359  l
+  360  cd 02-Docker/
+  361  ls
+  362  cd 03-DockerVolume/
+  363  ls
+  364  cat abc.txt
+  365  docker kill $(docker ps -qa)
+  366  docker rm $(docker ps -qa)
+  367  docker volume ls
+  368  docker volume rm my-vol
+  369  docker volume ls
+```
