@@ -175,3 +175,125 @@
   156  curl 172.17.0.2
   157  curl 172.17.0.3
 ```
+
+# Network, Image Tag & Push
+```
+184  docker images
+  185  docker ps
+  186  docker inspect --format '{{.Name}} {{.State.Running}} {{.NetworkSettings.IPAddress}}' $(docker ps -qa)
+  187  curl 172.17.0.2
+  188  curl 172.17.0.3
+  189  ip addr
+  190  docker network ls
+  191  docker network inspect 37408e0e163e
+  192  docker run -d --name my-apache-4 myapache:v2
+  193  docker network inspect 37408e0e163e
+  194  docker run -d --name my-apache-5 myapache:v2
+  195  docker network inspect 37408e0e163e
+  196  docker stop "my-apache-3"
+  197  docker network inspect 37408e0e163e
+  198  docker run -d --name my-apache-6 myapache:v2
+  199  ip addr
+  200  route -n
+  201  curl 172.17.0.3
+  202  netstat -tulnp
+  203  curl 172.17.0.3 -vvv
+  204  docker run -d --name my-apache-7 -p 8080:80 myapache:v2
+  205  docker ps
+  206  netstat -tulnp
+  207  netstat -l
+  208  netstat -t
+  209  netstat -tulnp
+  210  netstat --help
+  211  netstat -tulnp
+  212  docker ps
+  213  docker inspect --format '{{.Name}} {{.State.Running}} {{.NetworkSettings.IPAddress}}' $(docker ps -qa)
+  214  systemctl status docker
+  215  ls
+  216  docker run -d --name my-apache-8 -p 8080:80 myapache:v2
+  217  netstat -tulnp
+  218  docker run -d --name my-apache-9 -p 8081:80 myapache:v2
+  219  netstat -tulnp
+  220  docker run -d --name my-apache-10 -P myapache:v2
+  221  docker ps
+  222  ls
+  223  cd 02-DockerImages/
+  224  ls
+  225  cd apache/
+  226  ls
+  227  cp -rf v2 v3
+  228  ls
+  229  cd v3/
+  230  ls
+  231  vim index.html
+  232  ks
+  233  ls
+  234  vim Dockerfile
+  235  docker build -t myapache:v3 .
+  236  docker images
+  237  docker run -d --name my-apache-11 -P myapache:v3
+  238  docker ps
+  239  ls
+  240  docker images
+  241  docker history 315e6d72681f
+  242  docker inspect 315e6d72681f
+  243  ls
+  244  cd ..
+  245  ls
+  246  cp -rf v3 v4
+  247  ls
+  248  cd v4/
+  249  ls
+  250  vim Dockerfile
+  251  ls
+  252  docker build -t myapache:v4 .
+  253  docker run -d --name my-apache-12 -P myapache:v4
+  254  docker ps
+  255  curl 172.31.0.100:32770
+  256  curl 172.31.0.100:32769
+  257  ls
+  258  cd ..
+  259  ls
+  260  docker images
+  261  docker push myapache:v3
+  262  ping -c2 google.com
+  263  init 6
+  264  ls
+  265  history
+  266  ping -c2 google.com
+  267  docker push myapache:v3
+  268  docker login
+  269  docker push myapache:v3
+  270  docker images
+  271  cd devops-synechron-05-Sept-2022/
+  272  ls
+  273  docker tag 315e6d72681f amitvashist7/devops-synechron-05-Sept-2022-myapache:latest
+  274  docker tag 315e6d72681f amitvashist7/devops-synechron-05-sept-2022-myapache:latest
+  275  docker images
+  276  docker tag 9d34cdd2e1a2 amitvashist7/devops-synechron-05-sept-2022-myapache:v1
+  277  docker images
+  278  docker push amitvashist7/devops-synechron-05-sept-2022-myapache:v1
+  279  docker push amitvashist7/devops-synechron-05-sept-2022-myapache:latest
+  280  ls
+  281  docker kill $(docker ps -qa)
+  282  docker kill $(docker ps -q)
+  283  docker rm $(docker ps -qa)
+  284  docker ps -a
+  285  ls
+  286  docker images
+  287  docker images -q
+  288  docker rmi $(docker images -q)
+  289  docker rmi $(docker images -q) --force
+  290  docker images
+  291  netstat -tulnp
+  292  cd
+  293  docker run -d --name test-1 -P amitvashist7/devops-synechron-05-sept-2022-myapache
+  294  docker images
+  295  docker ps
+  296  netstat -tulnp
+  297  docker images
+  298  docker tag 315e6d72681f amitvashist7/devops-synechron-05-sept-2022-myapache:v2
+  299  docker images
+  300  docker push amitvashist7/devops-synechron-05-sept-2022-myapache:v2
+```
+
