@@ -1,7 +1,6 @@
 ```
- 232  mkdir 04-Replication-Cantroller
-  233  cd 04-Replication-Cantroller/
-  234  vim helloworld-rc.yaml
+  233  cd 02-Replication-Cantroller/
+  234  cat helloworld-rc.yaml
   235  ls
   236  kubectl apply -f helloworld-rc.yaml
   237  cat helloworld-rc.yaml
