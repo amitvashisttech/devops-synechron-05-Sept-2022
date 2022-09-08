@@ -1,0 +1,88 @@
+
+
+
+
+
+
+
+Windows  -> Master ( Ubuntu 16.04 ) 
+                                              docker0 ( 172.17.0.1 ) 
+                                          ->  Docker 
+										                           -> containerA ( apache: 80 ) [172.17.0.2] 
+																   
+																   
+																   
+																   
+																   
+																   
+																   
+																   
+----------------------
+curl 172.17.0.2:80 ( No ) 
+
+
+            curl 172.17.0.2:80 ( yes/no )        																   
+			
+			
+
+ 172.31.0.1                                           172.31.0.100           172.17.0.1 ========> 172.17.0.2
+ Wall Mounted Power Board +++++++++++++++++++++++++>  One Portable Power Socket / Board --------> Laptop  
+
+
+                       172.31.0.101
+Windows  -> worker1  ( Ubuntu 16.04 )  Svc : NodePort 
+                                                        docker0 ( 172.17.0.1 ) 
+                                                    ->  Docker 
+										                           -> containerA ( apache: 80 ) [172.17.0.2] 
+                       172.31.0.102 																   
+Windows  -> worker2 ( Ubuntu 16.04 )   Svc 
+                                                    docker0 ( 172.17.0.1 ) 
+                                                ->  Docker 
+										                           -> containerA ( apache: 80 ) [172.17.0.2] 
+																    																			   
+
+
+
+curl 172.31.0.101/102 	
+
+
+
+
+
+www.myapp.com:80 ->      AppLB ->          -> Node ( 1,2,3 )  -> app-A 
+
+
+www.myapp.com:8081 ->    AppLB ->          -> Node ( 1,2,3 )   -> App-B 
+www.myapp.com:8082 ->    AppLB ->          -> Node ( 1,2,3 )   -> App-C
+
+
+
+www.myapp.com:80/ ->      AppLB ->          -> Node ( 1,2,3 ) -> app-A 
+www.myapp.com:80/myapp  ->      AppLB ->          -> Node ( 1,2,3 ) -> App-B
+www.myapp.com:80/payment ->      AppLB ->          -> Node ( 1,2,3 ) -> App-C 
+
+
+www.google.com:80 ->           AppLB ->          -> Node ( 1,2,3 ) -> Search Engine 
+www.myapp.com:80/mail ->       AppLB ->          -> Node ( 1,2,3 ) -> Gmail 
+www.myapp.com:80/traslate ->   AppLB ->          -> Node ( 1,2,3 ) -> Translate 
+
+
+
+
+master  ( proxy ) 2 + 2 ( ClusterIP:ClusterPort , NodeIP:NodePort) / (  10.108.188.111:31007 , 172.31.0.100:31007 )      
+worker1 ( proxy ) 2 + 2 ( ClusterIP:ClusterPort , NodeIP:NodePort) / (  10.108.188.111:31007 , 172.31.0.101:31007 )   
+worker2 ( proxy ) 2 + 2 ( ClusterIP:ClusterPort , NodeIP:NodePort) / (  10.108.188.111:31007 , 172.31.0.102:31007 )   
+
+
+kubectl expose rc python-webapp-svc --type=NodePort
+
+python-webapp-svc    NodePort    10.108.188.111   <none>        31007:31007/TCP   42m
+root@master:~#
+
+
+                                 SVC ( Load Balancer ) 
+Firefox -> 172.31.0.100:31007 -> 10.108.188.111:31007  -> ( 192.168.189.80:8081,192.168.189.81:8081,192.168.235.140:8081 ) 
+Windows -> Master ( VM )      -> Pod / Master Proxy -> 	Pod - ( 192.168.189.80:8081 ) on Worker2 				
+
+
+					

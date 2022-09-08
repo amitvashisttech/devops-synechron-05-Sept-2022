@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloworld-service
+spec:
+  ports:
+  - port: 31004
+    nodePort: 31004
+    targetPort: http-port
+    protocol: TCP
+  selector:
+    app: docker-get-started
+  type: NodePort

@@ -1,0 +1,157 @@
+root@master:~/myRnD/docker-kubernetes-vmware-04-July-2022/02-K8s/06-Deployments# kubectl  get pods
+NAME                                     READY   STATUS              RESTARTS   AGE
+helloworld-controller-2pbtr              0/1     ContainerCreating   0          2s
+helloworld-controller-zq2df              0/1     ContainerCreating   0          2s
+helloworld-deployment-58857f8b94-6pgnc   1/1     Running             0          2m22s
+helloworld-deployment-58857f8b94-6wf7c   1/1     Running             0          2m22s
+root@master:~/myRnD/docker-kubernetes-vmware-04-July-2022/02-K8s/06-Deployments#
+
+
+
+
+[helloworld-controller]-[2pbtr]
+   Name of RC           Random No. Pod  
+   
+   
+[helloworld-deployment]-[58857f8b94]-[6pgnc]    
+  Name of Deployments    Replica Set Random No. Pod
+  
+  
+  
+  
+-> Create Deployments (2) -> Replica Set (2) -> Pods - 2    
+
+
+=========================================================================================================>
+
+root@master:~/myRnD/docker-kubernetes-vmware-04-July-2022/02-K8s/06-Deployments# kubectl get svc
+NAME                    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+helloworld-deployment   ClusterIP   10.99.65.151   <none>        80/TCP    4s
+kubernetes              ClusterIP   10.96.0.1      <none>        443/TCP   42h
+root@master:~/myRnD/docker-kubernetes-vmware-04-July-2022/02-K8s/06-Deployments#
+
+root@master:~/myRnD/docker-kubernetes-vmware-04-July-2022/02-K8s/06-Deployments# kubectl get svc
+NAME                    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+helloworld-deployment   NodePort    10.99.65.151   <none>        80:31152/TCP   2m33s
+kubernetes              ClusterIP   10.96.0.1      <none>        443/TCP        42h
+root@master:~/myRnD/docker-kubernetes-vmware-04-July-2022/02-K8s/06-Deployments#
+
+root@master:~/myRnD/docker-kubernetes-vmware-04-July-2022/02-K8s/06-Deployments# kubectl get svc
+NAME                    TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+helloworld-deployment   LoadBalancer   10.99.65.151   <pending>     80:31152/TCP   5m27s
+kubernetes              ClusterIP      10.96.0.1      <none>        443/TCP        42h
+root@master:~/myRnD/docker-kubernetes-vmware-04-July-2022/02-K8s/06-Deployments#
+
+
+ClusterIP -> NodePort -> LoadBalancer
+
+
+
+
+CLUSTER-IP 
+--------------------->
+Micro-A-v1 ( 3 Replicas )                                           ->  Micro-B-v1 ( 5 Replicas ) 
+192.168.1.[10..13]													 192.168.1.[25..30]
+
+
+UseCase1: 
+Micro-A 
+telnet / ping / wget -> 192.168.1.[25..30] 
+
+
+
+
+CLUSTER-IP 
+--------------------->
+Micro-A-v1 ( 3 Replicas )                                           ->  Micro-B-v2 ( 5 Replicas ) 
+192.168.1.[10..13]													    192.168.1.[55..60]
+
+
+UseCase1: 
+Micro-A 
+telnet / ping / wget -> 192.168.1.[25..30] - Not Okay 
+
+
+
+Micro-A-v1 ( 3 Replicas )                           SVC Micro-B ( ClusterIP ) ->  Micro-B-v1 ( 5 Replicas ) 
+192.168.1.[10..13]													              192.168.1.[25..30]
+
+
+UseCase2: 
+Micro-A 
+telnet / ping / wget -> ClusterIP - okay  
+
+
+
+
+Micro-A-v1 ( 3 Replicas )                           SVC Micro-B ( ClusterIP ) ->  Micro-B-v2 ( 5 Replicas ) 
+192.168.1.[10..13]													              192.168.1.[50..55]
+
+
+UseCase2: 
+Micro-A 
+telnet / ping / wget -> ClusterIP - okay  
+
+
+
+NodePort
+========> 
+Micro-A-v1 ( 3 Replicas )                           SVC Micro-B ( ClusterIP ) ->  Micro-B-v2 ( 5 Replicas ) 
+192.168.1.[10..13]													              192.168.1.[50..55]
+
+
+UseCase2: 
+Micro-A 
+telnet / ping / wget -> ClusterIP - okay  
+
+
+Windows -> NodeIP:NodePort -> Proxy -> ClusterIP -> POD 
+
+
+3 Nodes ( 172.31.0.100..102 ) : NodePort
+
+200 Nodes ( 172.31.0.10..210 ) : NodePort
+
+           
+Windows VIP LB  -> LoadBalancer -> NodeIP:NodePort -> Proxy -> ClusterIP -> POD 
+
+
+Windows : myapp-av.com -> DNS ( Lookup)   -> LoadBalancer IP -> NodeIP:NodePort -> Proxy -> ClusterIP -> POD 
+
+
+
+
+
+
+External DNS & IP Example: 
+=========================>
+External -> 
+mysql.myapp.abc.com  - 172.31.0.129:3306 
+
+
+kubectl expose deploy mysql --externalip=172.31.0.129  
+
+kubectl get svc 
+root@master:~/k8s-cka-philips-25-July-2022/22-AutoScaling# kubectl  get svc
+NAME          TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)           AGE
+hpa-example   NodePort    10.111.65.87   <none>        31001:31001/TCP   26m
+kubernetes    ClusterIP   10.96.0.1      <none>        443/TCP           3d22h
+mysql         NodePort    10.111.65.89   172.31.0.129       3306:3306/TCP   26m
+root@master:~/k8s-cka-philips-25-July-2022/22-AutoScaling# 
+  
+  
+  
+  
+  
+  
+win -> mysql.myapp.abc.com:3306 -> dns ->  172.31.0.129 -> LB -> worker[1..50]:3306 -> worker19 -> POD ( KubeProxy ) [Routes] -> 10.111.65.89:3306 -> 10.10.5.15:3306 
+
+mysql 
+10.111.65.89
+172.31.0.129 
+
+Pod 10.10.5.15
+
+
+
+
