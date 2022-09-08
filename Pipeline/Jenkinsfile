@@ -1,0 +1,44 @@
+node{ 
+    def Project_Path = "05-AppCode/petclinic-code"
+
+        stage('Git CheckOut') {
+            git branch: 'main', url: 'https://github.com/amitvashisttech/devops-synechron-05-Sept-2022.git'
+           }    
+    
+        
+    dir(Project_Path) { 
+        
+        stage('MAVEN - Clean') {
+           sh 'mvn clean'
+        }
+        
+        stage('MAVEN - Compile') {
+          sh 'mvn compile'
+        } 
+        
+        stage('MAVEN - Test') {
+          sh 'mvn test'
+        } 
+        
+        stage('MAVEN - Package') {
+         sh 'mvn package'
+        } 
+        
+        stage('Archive') {
+         archiveArtifacts artifacts: 'target/*.war', followSymlinks: false    
+        }    
+        
+        stage('Publish Test Results') {
+         junit 'target/surefire-reports/*.xml'   
+        }   
+
+        stage('Docker Deployment') {
+         sh 'docker-compose up -d --build'
+        } 
+    }
+}
+
+    
+    
+
+
